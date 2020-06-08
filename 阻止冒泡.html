@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div onclick='alert("div")'>
+        <ul onclick='alert("ul")'>
+            <li id="li">点击:阻止了事件冒泡机制</li>
+        </ul>
+
+        <ul onclick='alert("ul")'>
+            <li id="li" onclick='alert("li")'>点击:没有阻止事件冒泡</li>
+        </ul>
+
+    </div>
+</body>
+<script>
+    document.getElementById("li").onclick = function(e){
+        alert('li');
+        e.stopPropagation();
+    }
+</script>
+</html>

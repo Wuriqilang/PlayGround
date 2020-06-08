@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>Chnage Color</button>
+    <ul>
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+        <li>E</li>
+        <li>F</li>
+        <li>G</li>
+    </ul>
+</body>
+<script>
+    var btn = document.querySelector('button');
+    function random(number){
+        return Math.floor(Math.random()*(number+1))
+    }
+    //addEventListenner方式
+    function bgChange(){
+        var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+        document.body.style.backgroundColor = rndCol;
+    }
+
+    btn.addEventListener('click',bgChange);
+    // btn.removeEventListener('click',bgChange);
+
+    // btn赋值的事件绑定方式
+    // btn.onclick = function(){
+    //     var randomColor = 'rgb(' + random(255)+','+random(255)+','+random(255)+')';
+    //     document.body.style.backgroundColor = randomColor;
+    //     console.log(randomColor);
+    // }
+
+    //采用EventListenner好处:
+    // 1.可以进行removeEvent
+    // 2.可以同时绑定两个方法
+    //myElement.addEventListener('click', functionA);
+    // myElement.addEventListener('click', functionB);
+    
+    //多个元素的事件绑定
+    function bgChange2(e){
+        var randColor = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+        e.target.style.backgroundColor = randColor;
+    }
+
+    var lis = document.querySelectorAll('li');
+    lis.forEach(x=>{
+        x.addEventListener('click',bgChange2);
+    })
+</script>
+</html>
