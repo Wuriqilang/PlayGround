@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的数据双向绑定系统</title>
+</head>
+<body>
+    <h1 id="name">{{name}}</h1>
+</body>
+<script src="js/Index.js"></script>
+<script src="js/Watcher.js"></script>
+<script src="js/Observer.js"></script>
+<script>
+    var ele = document.querySelector('#name');
+    var myVue = new MyVue(
+    {
+        name : 'hello world'
+    },
+    ele,'name');
+
+    console.log('当前的name:'+myVue.name);
+
+    window.setTimeout(()=>{
+        console.log('2000毫秒后,name值改变了');
+        myVue.data.name = 'hello me!'
+    },2000)
+</script>
+</html>
