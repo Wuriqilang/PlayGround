@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的数据双向绑定系统</title>
 </head>
+
 <body>
     <div id="app">
         <h2>{{title}}</h2>
@@ -17,20 +19,20 @@
 <script src="js/Compile.js"></script>
 <script src="js/Index.js"></script>
 <script>
-    var myVue = new MyVue(
-    {
-        el:'#app',
-        data:{
-            title:'Compile is Working!',
-            name : ''
+    var myVue = new MyVue({
+        el: '#app',
+        data: {
+            title: 'Title',
+            name: 'Wuriqilang'
         }
     });
 
-    console.log('当前的name:'+myVue.name);
+    console.log('当前的title:' + myVue.title);
 
-    window.setTimeout(()=>{
-        console.log('2000毫秒后,name值改变了');
-        myVue.title = 'hello me!'
-    },2000)
+    window.setTimeout(() => {
+        console.log('2000毫秒后,title值改变了');
+        myVue.title = 'Compile is Working!'
+    }, 2000)
 </script>
+
 </html>
