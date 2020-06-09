@@ -1,16 +1,18 @@
-function MyVue (data,el,exp){
+function MyVue (options){
     var my = this;
-    this.data = data;
+    this.vm = this;
+    this.data = options;
 
-    Object.keys(data).forEach(key=>{
+    Object.keys(this.data).forEach(key=>{
         my.proxyKeys(key); //绑定代理属性
     })
 
-    obverve(data);
-    el.innerHTML = this.data[exp];
-    new Wathcher(this,exp,function(value){
-        el.innerHTML = value;
-    })
+    obverve(this.data);
+    // el.innerHTML = this.data[exp];
+    // new Wathcher(this,exp,function(value){
+    //     el.innerHTML = value;
+    // })
+    new Compile(options.el,this.vm)
     return this;
 }
 

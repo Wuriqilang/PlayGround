@@ -6,24 +6,31 @@
     <title>我的数据双向绑定系统</title>
 </head>
 <body>
-    <h1 id="name">{{name}}</h1>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <h1>{{name}}</h1>
+    </div>
+
 </body>
-<script src="js/Index.js"></script>
 <script src="js/Watcher.js"></script>
 <script src="js/Observer.js"></script>
+<script src="js/Compile.js"></script>
+<script src="js/Index.js"></script>
 <script>
-    var ele = document.querySelector('#name');
     var myVue = new MyVue(
     {
-        name : 'hello world'
-    },
-    ele,'name');
+        el:'#app',
+        data:{
+            title:'Compile is Working!',
+            name : ''
+        }
+    });
 
     console.log('当前的name:'+myVue.name);
 
     window.setTimeout(()=>{
         console.log('2000毫秒后,name值改变了');
-        myVue.data.name = 'hello me!'
+        myVue.title = 'hello me!'
     },2000)
 </script>
 </html>
