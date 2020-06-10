@@ -4,5 +4,5 @@
 
 [全文地址](https://www.xr1228.com/post/databind/)
 
-![Image text](https://www.xr1228.com//post-images/1591757508655.gif)
+![演示图片](https://www.xr1228.com//post-images/1591757508655.gif)
 
