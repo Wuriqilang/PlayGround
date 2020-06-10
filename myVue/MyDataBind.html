@@ -3,36 +3,67 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=0, initial-scale=1.0">
     <title>我的数据双向绑定系统</title>
+    <style>
+        html{height:100%}
+        body{
+            height:100%;
+            display:flex;
+            justify-content : center;  
+            align-items : center;   
+        }
+        #app{
+            text-align: center;
+        }
+    </style>
 </head>
-
 <body>
     <div id="app">
-        <h2>{{title}}</h2>
-        <h1>{{name}}</h1>
+        <img src="./assest/image/logo.png" alt="logo">
+        <h1>{{title}}</h1>
+        <h2>{{name}}</h2>
+        <input v-mode="keywords"></input>
+        <select v-mode="keywords">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+        </select>
+        <h2>{{keywords}}</h2>
+        <button v-on:click="clickMe">click me!</button>
     </div>
-
 </body>
 <script src="js/Watcher.js"></script>
 <script src="js/Observer.js"></script>
 <script src="js/Compile.js"></script>
 <script src="js/Index.js"></script>
 <script>
-    var myVue = new MyVue({
+    new MyVue({
         el: '#app',
         data: {
             title: 'Title',
-            name: 'Wuriqilang'
+            name: 'Wuriqilang',
+            keywords:'myVue'
+        },
+        mounted(){
+            window.setTimeout(() => {
+                console.log('2000毫秒后,title值改变了');
+                this.title = 'Compile is Working!'
+            }, 2000)
+
+
+            window.setTimeout(() => {
+                console.log('5000毫秒后,name值改变了');
+                this.name = 'you complete it!Congratulation!'
+            }, 5000)
+        },
+        methods:{
+            clickMe(){
+                this.title = 'i click the button!'
+            }
         }
     });
-
-    console.log('当前的title:' + myVue.title);
-
-    window.setTimeout(() => {
-        console.log('2000毫秒后,title值改变了');
-        myVue.title = 'Compile is Working!'
-    }, 2000)
 </script>
 
 </html>
