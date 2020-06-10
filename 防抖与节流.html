@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body,#app{
+            height:100%;
+        }
+        #app{
+            display:flex;
+            justify-content:space-between
+        }
+
+
+        .leftPanel{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid black;
+            background-color: antiquewhite;
+            width: 40%;
+            height: 100%;
+        }
+        .right-panel{
+            display: flex;
+            flex-direction: column;
+            height: 60%;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="leftPanel">
+            <h2>Move your mouse here</h2>
+        </div>
+        <div class="rigthPanel">
+            <div class="method">Regular标准</div>
+            <div class="method">debounce防抖</div>
+            <div class="method">throttle节流</div>
+        </div>
+    </div>
+</body>
+</html>
