@@ -4,5 +4,5 @@
 
 [全文地址](https://www.xr1228.com/post/databind/)
 
-![Image text](https://github.com/Wuriqilang/PlayGround/blob/master/myVue/assest/image/logo.png)
+![Image text](https://www.xr1228.com//post-images/1591757508655.gif)
 
