@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual DOM实现</title>
+</head>
+<body>
+    <div id="virtual-dom">
+        <p>Practical DOM</p>
+        <ul id="list">
+            <li class="item">Item 1</li>
+            <li class="item">Item 2</li>
+            <li class="item">Item 3</li>
+        </ul>
+        <div>Hello World</div>
+    </div>
+    <script type="module">
+        import el from './Element.js'
+        var virtualDom = el('div', { id: 'virtual-dom' }, [
+            el('p', {}, ['Virtual DOM']),
+            el('ul', { id: 'list' }, [
+                el('li', { class: 'item' }, ['Item 1']),
+                el('li', { class: 'item' }, ['Item 2']),
+                el('li', { class: 'item' }, ['Item 3'])
+            ]),
+            el('div', {}, ['Hello World'])
+        ])
+        console.log("Virtual Dom:");
+        console.log(virtualDom);
+        console.log("Practical Dom:");
+        console.log(document.getElementById("virtual-dom"));
+        //渲染虚拟DOM
+        var ulRoot = virtualDom.render();
+        document.body.appendChild(ulRoot);
+    </script>
+</body>
+</html>
