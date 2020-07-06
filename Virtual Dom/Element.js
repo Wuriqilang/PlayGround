@@ -24,12 +24,9 @@ function Element(tagName,props,children){
     //子元素的个数
     this.count = count;
 }
-
-
 /**
  * render 将virdual-dom对象渲染为真实DOM元素
  */
-
  Element.prototype.render = function(){
      var el = document.createElement(this.tagName);
      var props = this.props;
@@ -48,10 +45,7 @@ function Element(tagName,props,children){
      })
      return el;
  }
-
-
 function createElement(tagName,props,children){
     return new Element(tagName,props,children);
 }
-
 export default createElement;
