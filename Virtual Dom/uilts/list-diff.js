@@ -150,5 +150,6 @@ function diff (oldList, newList, key) {
       : key(item)
   }
   
-  exports.makeKeyIndexAndFree = makeKeyIndexAndFree // exports for test
-  exports.diff = diff
+  //exports.makeKeyIndexAndFree = makeKeyIndexAndFree // exports for test
+  //exports.diff = diff
+  export default diff;

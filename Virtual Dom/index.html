@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual DOM实现</title>
 </head>
+
 <body>
     <div id="virtual-dom">
         <p>Practical DOM</p>
@@ -17,6 +19,7 @@
     </div>
     <script type="module">
         import el from './Element.js';
+        import diff from './diff.js';
 
         var virtualDom = el('div', { id: 'virtual-dom' }, [
             el('p', {}, ['Virtual DOM']),
@@ -34,6 +37,21 @@
         //渲染虚拟DOM
         var ulRoot = virtualDom.render();
         document.body.appendChild(ulRoot);
+
+        //再新建一颗Virtual-Dom
+        var virtualDom2 = el('div', { id: 'virtual-dom2' }, [
+            el('p', {}, ['Virtual DOM2']),
+            el('ul', { id: 'list' }, [
+                el('li', { class: 'item' }, ['Item 21']),
+                el('li', { class: 'item' }, ['Item 23'])
+            ]),
+            el('p', {}, ['Hello World'])
+        ])
+
+        //对比两棵树差异
+        var patches = diff(virtualDom, virtualDom2);
+        console.log('patches:', patches);
     </script>
 </body>
+
 </html>
