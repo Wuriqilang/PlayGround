@@ -19,7 +19,7 @@ function dfsWalk(oldNode, newNode, index, patches) {
     if (typeof (oldNode) === "string" && typeof (newNode) === "string") {
         //文本内容改变
         if (newNode !== oldNode) {
-            currentPatch.push({ type: patch.TEXT, context: newNode })
+            currentPatch.push({ type: patch.TEXT, content: newNode })
         }
     } else if (newNode != null && oldNode.tagName === newNode.tagName && oldNode.key === newNode.key) {
         //节点相同,比较属性

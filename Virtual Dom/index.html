@@ -5,11 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual DOM实现</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #Practical-dom {
+            width: 300px;
+            border: 1px solid red;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="virtual-dom">
-        <p>Practical DOM</p>
+    <h1>virtual-dom系统</h1>
+    <div id="Practical-dom">
+        <p>Practical DOM（一个真实DOM）</p>
         <ul id="list">
             <li class="item">Item 1</li>
             <li class="item">Item 2</li>
@@ -17,40 +37,71 @@
         </ul>
         <div>Hello World</div>
     </div>
+    <br>
+    <br>
+
+    <button onclick="renderDom1()">渲染virtualDOM1</button>
+    <button onclick="renderDom2()">渲染virtualDOM2</button>
+    <!-- <button onclick="">渲染virtualDOM1</button> -->
+
+
     <script type="module">
         import el from './Element.js';
         import diff from './diff.js';
+        import patch from "./patch.js";
 
-        var virtualDom = el('div', { id: 'virtual-dom' }, [
-            el('p', {}, ['Virtual DOM']),
-            el('ul', { id: 'list' }, [
-                el('li', { class: 'item' }, ['Item 1']),
-                el('li', { class: 'item' }, ['Item 2']),
-                el('li', { class: 'item' }, ['Item 3'])
-            ]),
-            el('div', {}, ['Hello World'])
-        ])
-        console.log("Virtual Dom:");
-        console.log(virtualDom);
-        console.log("Practical Dom:");
-        console.log(document.getElementById("virtual-dom"));
-        //渲染虚拟DOM
-        var ulRoot = virtualDom.render();
-        document.body.appendChild(ulRoot);
 
-        //再新建一颗Virtual-Dom
-        var virtualDom2 = el('div', { id: 'virtual-dom2' }, [
-            el('p', {}, ['Virtual DOM2']),
-            el('ul', { id: 'list' }, [
-                el('li', { class: 'item' }, ['Item 21']),
-                el('li', { class: 'item' }, ['Item 23'])
-            ]),
-            el('p', {}, ['Hello World'])
-        ])
+        window.onload = function () {
+            var ulRoot;//定义一个对象存放生成的真实DOM对象
+            var ulRoot2;///定义一个对象存放生成的真实DOM对象
+            //定义一颗Virtual Dom
+            var virtualDom = el('div', { id: 'virtual-dom' }, [
+                el('p', {}, ['Virtual DOM']),
+                el('ul', { id: 'list' }, [
+                    el('li', { class: 'item' }, ['Item 1']),
+                    el('li', { class: 'item' }, ['Item 2']),
+                    el('li', { class: 'item' }, ['Item 3'])
+                ]),
+                el('div', {}, ['Hello World'])
+            ])
+            //再新建一颗Virtual-Dom
+            var virtualDom2 = el('div', { id: 'virtual-dom2' }, [
+                el('p', {}, ['Virtual DOM2']),
+                el('ul', { id: 'list' }, [
+                    el('li', { class: 'item' }, ['Item 21']),
+                    el('li', { class: 'item' }, ['Item 23'])
+                ]),
+                el('p', {}, ['Hello World'])
+            ])
 
+            console.log("Practical Dom:");
+            console.log(document.getElementById("Practical-dom"));
+        }
         //对比两棵树差异
-        var patches = diff(virtualDom, virtualDom2);
-        console.log('patches:', patches);
+        //var patches = diff(virtualDom, virtualDom2);
+        //console.log('patches:', patches);
+
+        //patch(ulRoot, patches);
+    </script>
+    <script>
+        //渲染虚拟DOM
+        function renderDom1() {
+            console.log("Virtual Dom:");
+            console.log(this.virtualDom);
+
+            ulRoot = virtualDom.render();
+            document.body.appendChild(ulRoot);
+        }
+
+        //渲染虚拟DOM2
+        function renderDom2() {
+            console.log("Virtual Dom2:");
+            console.log(virtualDom2);
+
+            ulRoot2 = virtualDom2.render();
+            document.body.appendChild(ulRoot2);
+
+        }
     </script>
 </body>
 
