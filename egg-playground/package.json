@@ -1,0 +1,19 @@
+{
+  "name": "egg-playground",
+  "version": "1.0.0",
+  "description": "egg框架学习",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "dev": "egg-bin dev"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "egg": "^2.27.0",
+    "egg-view-nunjucks": "^2.2.0"
+  },
+  "devDependencies": {
+    "egg-bin": "^4.15.0"
+  }
+}
