@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>threejs 画线</title>
+    <script src="../lib/three.js"></script>
+  </head>
+  <body>
+    <script>
+      var renderer = new THREE.WebGLRenderer();
+      var width = window.innerWidth; //窗口宽度
+      var height = window.innerHeight; //窗口高度
+
+      renderer.setSize(width, height);
+      document.body.appendChild(renderer.domElement);
+
+      var camera = new THREE.PerspectiveCamera(45, width / height, 1, 500);
+      camera.position.set(0, 0, 100);
+      camera.lookAt(0, 0, 0);
+
+      var scene = new THREE.Scene();
+
+      //新建线条材质
+      var material = new THREE.LineBasicMaterial({
+        color: 0x0000ff,
+      });
+      //新建物料
+      var geometry = new THREE.Geometry();
+      geometry.vertices.push(new THREE.Vector3(-10, 0, 0));
+      geometry.vertices.push(new THREE.Vector3(0, 10, 0));
+      geometry.vertices.push(new THREE.Vector3(10, 0, 0));
+      //合成线
+      var line = new THREE.Line(geometry, material);
+      //加入scene并渲染
+      scene.add(line);
+      renderer.render(scene, camera);
+    </script>
+  </body>
+</html>

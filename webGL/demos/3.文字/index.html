@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>threejs 文字</title>
+    <style>
+      #info {
+        position: absolute;
+        top: 10px;
+        width: 100%;
+        text-align: center;
+        z-index: 100;
+        display: block;
+      }
+    </style>
+    <script src="../lib/three.js"></script>
+  </head>
+  <body>
+    <div id="info">Descripition</div>
+    <script>
+      // 实现方式一:纹理
+      var texture = new THREE.TextureLoader().load("../textures/timg.jpeg");
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+      texture.repeat.set(4, 4);
+      //
+    </script>
+  </body>
+</html>
