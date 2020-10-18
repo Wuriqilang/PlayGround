@@ -85,7 +85,7 @@
       }
       render();
       var controls = new THREE.OrbitControls(camera); //创建控制对象
-      controls.addEventLinstener("change", render); //监听鼠标,键盘对象
+      controls.addEventListener("change", render); //监听鼠标,键盘对象
     </script>
   </body>
 </html>
