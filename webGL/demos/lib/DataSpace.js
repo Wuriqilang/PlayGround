@@ -8,7 +8,7 @@
 import State from "./stats.js";
 import "./three.js";
 
-var ds = function () {
+function ds() {
   var renderer;
   var stats = State();
   function initRenderer() {
@@ -100,6 +100,6 @@ var ds = function () {
   //   camera.updateProjectionMatrix(); // 重新计算投影矩阵
   // };
   createApp();
-};
+}
 
 export default ds;
