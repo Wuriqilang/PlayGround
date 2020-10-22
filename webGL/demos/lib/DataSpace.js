@@ -1,0 +1,105 @@
+/**
+ * @author Ruoli / https://github.com/Wuriqilang
+ */
+
+// This is a funcitonal package based on three.js
+// We hope to privide a simpler and easier-to-use API for the industrial field
+
+import State from "./stats.js";
+import "./three.js";
+
+var ds = function () {
+  var renderer;
+  var stats = State();
+  function initRenderer() {
+    width = document.getElementById("canvas-frame").clientWidth;
+    height = document.getElementById("canvas-frame").clientHeight;
+    renderer = new THREE.WebGLRenderer({
+      antialias: true,
+    });
+    renderer.setSize(width, height);
+    document.getElementById("canvas-frame").appendChild(renderer.domElement);
+    renderer.setClearColor(0xffffff, 1.0);
+
+    stats.domElement.style.position = "absolute";
+    stats.domElement.style.left = "0px";
+    stats.domElement.style.tap = "0px";
+    document.getElementById("canvas-frame").appendChild(stats.domElement);
+  }
+
+  //相机
+  var camera;
+  function initCamera() {
+    camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
+    camera.position.x = 0;
+    camera.position.y = 1000;
+    camera.position.z = 0;
+    camera.up.x = 0;
+    camera.up.y = 0;
+    camera.up.z = 1;
+    camera.lookAt(0, 0, 0); //默认视点
+  }
+
+  //场景
+  var scene;
+  function initScene() {
+    scene = new THREE.Scene();
+  }
+  var light;
+  function initLight() {
+    light = new THREE.DirectionalLight(0xff0000, 1.0, 0); //颜色,强度
+    light.position.set(100, 100, 200);
+    scene.add(light);
+  }
+
+  function initObject() {
+    var geometry = new THREE.Geometry();
+
+    //定义一种线条的材质,使用THREE.LineBasicMaterial类型来定义,接受一个集合作为参数
+    //集合的参数属性列表
+    //Color:线条的颜色,用16进制来表示,默认的颜色是白色
+    //Linewidth:线条的宽度,默认时候1个单位宽度
+    //Linecap:线条两端的外观,默认是圆角端点,当线条较粗的时候才看得出效果,如果线条很细,那么你几乎看不出效果了
+    //Linejoin:两个线条的连接点处的外观,默认是“round”,表示圆角
+    //VertexColors:定义线条材质是否使用顶点颜色,这是一个boolean值意思是,线条各部分的颜色会根据顶点的颜色来进行插值
+    //Fog:定义材质的颜色是否受全局雾效的影响
+    var material = new THREE.LineBasicMaterial({ vertexColors: true, color: 0xff0000 });
+    var color1 = new THREE.Color(0x444444);
+    var color2 = new THREE.Color(0xff0000);
+    var color3 = new THREE.Color(0x00ff00);
+    //线的材质可以由2点的颜色决定
+    var p1 = new THREE.Vector3(0, 0, 0);
+    var p2 = new THREE.Vector3(200, 0, 0);
+    var p3 = new THREE.Vector3(100, 0, 100 * Math.sqrt(3));
+    geometry.vertices.push(p1, p2, p3, p1);
+    geometry.colors.push(color1, color2, color3, color1);
+
+    var line = new THREE.Line(geometry, material, THREE.LineSegments);
+    scene.add(line);
+  }
+  createApp = function worldInitial() {
+    initRenderer();
+    initCamera();
+    initScene();
+    initLight();
+    initObject();
+    renderer.clear();
+    animation();
+  };
+
+  function animation() {
+    camera.position.x += 1;
+    renderer.render(scene, camera);
+    requestAnimationFrame(animation);
+  }
+
+  //窗口自适应
+  // window.onresize = function () {
+  //   renderer.setSize(window.innerWidth, window.innerHeight); //重设渲染器宽高比
+  //   camera.aspect = window.innerWidth / window.innerHeight; //重设相机宽高比
+  //   camera.updateProjectionMatrix(); // 重新计算投影矩阵
+  // };
+  createApp();
+};
+
+export default ds;

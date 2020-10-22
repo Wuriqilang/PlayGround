@@ -16,13 +16,12 @@
       }
     </style>
     <script type="module">
-      import State from '../lib/stats.js';
-      window.vd = { State}; //将State放入全局作用域中
+      import State from "../lib/stats.js";
+      window.vd = { State }; //将State放入全局作用域中
     </script>
 
     <script>
-
-      window.onload = function(){
+      window.onload = function () {
         //这里需要使用onload包裹起来,否则无法等待异步es module执行完毕
         var State = window.vd.State;
         //渲染器
@@ -92,7 +91,7 @@
           var line = new THREE.Line(geometry, material, THREE.LineSegments);
           scene.add(line);
         }
-        worldInitial =function worldInitial() {
+        worldInitial = function worldInitial() {
           initRenderer();
           initCamera();
           initScene();
@@ -100,7 +99,7 @@
           initObject();
           renderer.clear();
           animation();
-        }
+        };
 
         function animation() {
           camera.position.x += 1;
@@ -115,12 +114,10 @@
           camera.updateProjectionMatrix(); // 重新计算投影矩阵
         };
         worldInitial();
-      }
-      
+      };
     </script>
   </head>
-  <body">
+  <body>
     <div id="canvas-frame"></div>
-
   </body>
 </html>
