@@ -1,0 +1,9 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["eslint-config-ali"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": 2,
+    "comma-spacing": "error"
+  }
+}
